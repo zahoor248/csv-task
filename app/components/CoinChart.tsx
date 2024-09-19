@@ -37,7 +37,6 @@ export function CoinChart() {
   const handleChange = (data, key, rowkey) => {
     console.log(data, key, rowkey);
     console.log(csvData[rowkey][key]);
-    let temp = csvData[rowkey][key];
     csvData[rowkey][key] = data;
     setCSVData(csvData);
   };
@@ -64,7 +63,9 @@ export function CoinChart() {
       <div>
         {csvData && csvData?.length > 0 ? (
           <CSVLink data={JSON.stringify(csvData)} headers={csvData[0]}>
-            <p className="text-white py-3 px-5 bg-black w-[140px]">Download me</p>
+            <p className="text-white py-3 px-5 bg-black w-[140px]">
+              Download me
+            </p>
           </CSVLink>
         ) : (
           ""
@@ -85,7 +86,7 @@ export function CoinChart() {
                         </TableCell>
                       ))}
                     <TableCell className="cursor-pointer">
-                      <Dialog>
+                      <Dialog onOpenChange={() => setCSVData(csvData)}>
                         <DialogTrigger
                           onClick={() => setEditData({ data: item, key: key })}
                         >
@@ -98,9 +99,9 @@ export function CoinChart() {
                               type="text"
                               defaultValue={item}
                               className="border py-3 w-full px-4"
-                              onChange={(e) =>
-                                handleChange(e.target.value, key, editData.key)
-                              }
+                              onChange={(e) => {
+                                handleChange(e.target.value, key, editData.key);
+                              }}
                             />
                           ))}
                         </DialogContent>
