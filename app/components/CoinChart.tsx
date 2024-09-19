@@ -64,7 +64,7 @@ export function CoinChart() {
       <div>
         {csvData && csvData?.length > 0 ? (
           <CSVLink data={JSON.stringify(csvData)} headers={csvData[0]}>
-            <p className="text-white py-3 px-5 bg-black w-[120px]">Download me</p>
+            <p className="text-white py-3 px-5 bg-black w-[140px]">Download me</p>
           </CSVLink>
         ) : (
           ""
